@@ -1,0 +1,7 @@
+node_modules
+dist
+.DS_Store
+package
+noidle*.tgz
+npm-debug.log
+NOTES
