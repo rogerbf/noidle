@@ -1,12 +1,12 @@
 const pmset = require('./lib/pmset.js')
 const watch = require('./lib/watch.js')
 
-const run = watchPid => {
+const run = pidToWatch => {
   return (
-    pmset()
+  pmset()
     .then(pmsetPid => {
-      if (watchPid) {
-        watch(pmsetPid, watchPid)
+      if (pidToWatch) {
+        watch(pmsetPid, pidToWatch)
         return Promise.resolve(pmsetPid)
       } else {
         return Promise.resolve(pmsetPid)
@@ -15,15 +15,26 @@ const run = watchPid => {
   )
 }
 
-const noidle = (...args) => {
-  if (typeof(args[args.length - 1]) === 'function') {
-    const callback = args[args.length - 1]
-    run(typeof(args[0]) === 'number' ? args[0] : null)
+const noidle = (...args) => {
+
+  const pidToWatch = (
+  typeof (args[0]) === 'number' ?
+    args[0] : null
+  )
+
+  const callback = (
+  typeof (args[args.length - 1]) === 'function' ?
+    args[args.length - 1] : null
+  )
+
+  if (callback) {
+    run(pidToWatch)
       .then(r => callback(null, r))
       .catch(e => callback(e))
   } else {
-    return run(typeof(args[0]) === 'number' ? args[0] : null)
+    return run(pidToWatch)
   }
+
 }
 
 module.exports = noidle
