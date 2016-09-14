@@ -8,6 +8,7 @@ const isRunning = (processes, pid) => {
 const top = require('streaming-top')({ delay: 3 })
 
 top.on('data', data => {
+  
   const processes = JSON.parse(data.toString()).processes
 
   if (isRunning(processes, pmset)) {

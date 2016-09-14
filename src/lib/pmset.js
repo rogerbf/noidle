@@ -3,7 +3,9 @@ const execFile = require('child_process').execFile
 
 const pmset = () => {
   return new Promise((resolve, reject) => {
+
     execFile('which', ['pmset'], (err, stdout, stderr) => {
+
       if (err) reject('command not found in path')
 
       const path = stdout.trim()
@@ -13,6 +15,7 @@ const pmset = () => {
       instance.unref()
 
       resolve(instance.pid)
+
     })
   })
 }

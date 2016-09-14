@@ -29,7 +29,7 @@ const noidle = (...args) => {
 
   if (callback) {
     run(pidToWatch)
-      .then(r => callback(null, r))
+      .then(pid => callback(null, pid))
       .catch(e => callback(e))
   } else {
     return run(pidToWatch)
