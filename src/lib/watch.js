@@ -1,9 +1,13 @@
-const fork = require('child_process').fork
+const spawn = require('child_process').spawn
 const path = require('path')
 
+const watcherPath = path.join(path.parse(__filename).dir, 'watcher.js')
+
 const watch = (pmsetPid, watchPid) => {
-  const modulePath = path.join(__dirname, 'watcher.js')
-  fork(modulePath, [pmsetPid, watchPid], { stdio: 'ignore' })
+  const instance = spawn('node', [watcherPath, pmsetPid, watchPid],
+    { detached: true, stdio: 'ignore' })
+  instance.unref()
+  return instance.pid
 }
 
 module.exports = watch
