@@ -23,7 +23,7 @@ noidle(436, (err, pmsetPid) => console.log(pmsetPid))
 
 ### `noidle([pid])`
 
-Returns a promise which resolves with the pid of the underlying `pmset` instance. If called with a pid, noidle will run until the associated process quits. The watcher spawns detached and keeps running independently of the node process which invoked `noidle`.
+Returns a promise which resolves with the pid of the underlying `pmset` instance. If called with a pid, noidle will run until the associated process quits. The watcher spawns detached and keeps running independently of the node process which invoked `noidle`. In this case - the returned pid is that of the detached node process.
 
 ## see also
 
