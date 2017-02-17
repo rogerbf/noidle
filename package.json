@@ -1,6 +1,6 @@
 {
   "name": "noidle",
-  "version": "0.0.3",
+  "version": "0.0.4",
   "description": "prevents a macOS computer from going to sleep",
   "main": "./dist/index.js",
   "scripts": {
@@ -44,7 +44,7 @@
     ]
   },
   "dependencies": {
-    "streaming-top": "^0.1.2"
+    "watch-pid": "^1.0.0"
   },
   "repository": {
     "type": "git",
