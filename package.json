@@ -1,6 +1,6 @@
 {
   "name": "noidle",
-  "version": "0.0.4",
+  "version": "1.0.0",
   "description": "prevents a macOS computer from going to sleep",
   "main": "./dist/index.js",
   "scripts": {
