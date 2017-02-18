@@ -1,22 +1,14 @@
-const { spawn, execFile } = require('child_process')
-
-const pmset = () => {
+module.exports = spawn => {
   return new Promise((resolve, reject) => {
-
-    execFile('which', ['pmset'], (err, stdout, stderr) => {
-
-      if (err) reject('command not found in path')
-
-      const path = stdout.trim()
-      const options = { detached: true, stdio: 'ignore' }
-      const instance = spawn(path, ['noidle'], options)
-
-      instance.unref()
-
-      resolve(instance.pid)
-
-    })
+    const pmset = spawn(
+      `pmset`,
+      [ `noidle` ],
+      {
+        detached: true,
+        stdio: `ignore`
+      }
+    )
+    pmset.unref()
+    resolve(pmset.pid)
   })
 }
-
-module.exports = pmset

@@ -1,17 +1,21 @@
-const { spawn } = require('child_process')
-
-module.exports = (pmset, subject) => {
-  const watcher = spawn(
+module.exports = (spawn, pmset, subject) => {
+  const node = spawn(
     `node`,
     [
       `-e`,
-      `require('watch-pid')(${subject}, () => process.kill(${pmset}))`
+      `const watch = require('watch-pid');` +
+      `const pmset = parseInt(process.argv[1]);` +
+      `const subject = parseInt(process.argv[2]);` +
+      `watch(subject, () => process.kill(pmset));` +
+      `watch(pmset, () => process.exit());`,
+      pmset,
+      subject
     ],
     {
       detached: true,
-      stio: `ignore`
+      stdio: `ignore`
     }
   )
-  watcher.unref()
-  return watcher.pid
+  node.unref()
+  return node.pid
 }
