@@ -1,5 +1,4 @@
-const spawn = require('child_process').spawn
-const execFile = require('child_process').execFile
+const { spawn, execFile } = require('child_process')
 
 const pmset = () => {
   return new Promise((resolve, reject) => {
