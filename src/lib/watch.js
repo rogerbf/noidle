@@ -1,13 +1,17 @@
-const spawn = require('child_process').spawn
-const path = require('path')
+const { spawn } = require('child_process')
 
-const watcherPath = path.join(path.parse(__filename).dir, 'watcher.js')
-
-const watch = (pmsetPid, watchPid) => {
-  const instance = spawn('node', [watcherPath, pmsetPid, watchPid],
-    { detached: true, stdio: 'ignore' })
-  instance.unref()
-  return instance.pid
+module.exports = (pmset, subject) => {
+  const watcher = spawn(
+    `node`,
+    [
+      `-e`,
+      `require('watch-pid')(${subject}, () => process.kill(${pmset}))`
+    ],
+    {
+      detached: true,
+      stio: `ignore`
+    }
+  )
+  watcher.unref()
+  return watcher.pid
 }
-
-module.exports = watch
