@@ -1,6 +1,6 @@
 # noidle
 
-Spawns an instance of `pmset noidle` which prevents a macOS computer form going to sleep.
+Spawns an instance of `pmset noidle` which prevents a macOS computer from going to sleep.
 
 ## usage
 
@@ -8,23 +8,24 @@ Spawns an instance of `pmset noidle` which prevents a macOS computer form going 
 const noidle = require('noidle')
 
 noidle()
-  .then(pmsetPid => console.log(pmsetPid))
+.then(pmsetPID => console.log(pmsetPID))
+.catch(console.log)
 // stay awake indefinitely
 
 noidle(435)
-  .then(pmsetPid => console.log(pmsetPid))
-// stay awake for as long as the process with the pid 435 is running
-
-noidle(436, (err, pmsetPid) => console.log(pmsetPid))
-// alternative way of invoking with a callback
+.then(pmsetPID => console.log(pmsetPID))
+.catch(console.log)
+// stay awake for as long as pid 435 exists
 ```
 
 ## api
 
 ### `noidle([pid])`
 
-Returns a promise which resolves with the pid of the underlying `pmset` instance. If called with a pid, noidle will run until the associated process quits. The watcher spawns detached and keeps running independently of the node process which invoked `noidle`. In this case - the returned pid is that of the detached node process.
+Returns a `Promise` which resolves with the `pid` of the underlying `pmset` instance. When called with a `pid`, a detached node instance will track the existance of that pid. If the corresponding process no longer exists - `pmset` and the tracking node instance terminates.
 
-## see also
+## other
 
-In older versions of macOS `pmset noidle` was the way to go if you wanted to force your computer to stay awake. In later versions of the OS, Apple shipped a new tool: `caffeinate`. To run that instead, have a look at:  [caffeinate](https://www.npmjs.com/package/caffeinate). Or if you prefer a more high level module which automatically runs the preferred method depending on system version: [vaka](https://www.npmjs.com/package/vaka) might be what you are looking for.
+In older versions of macOS `pmset noidle` was the way to go if you wanted to force your computer to stay awake. In later versions, Apple shipped a new tool: `caffeinate` which came with a tracking functionality. To run that instead, have a look at:  [caffeinate](https://www.npmjs.com/package/caffeinate).
+
+If you prefer a more high level module which automatically selects the preferred method depending on system version: [vaka](https://www.npmjs.com/package/vaka)
