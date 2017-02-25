@@ -1,6 +1,6 @@
 # noidle
 
-Spawns an instance of `pmset noidle` which prevents a macOS computer from going to sleep.
+Spawns an instance of `pmset noidle` which prevents a system running macOS from going to sleep.
 
 ## usage
 
