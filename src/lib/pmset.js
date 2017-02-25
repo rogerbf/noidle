@@ -9,6 +9,6 @@ module.exports = spawn => {
       }
     ).on(`error`, reject)
     pmset.unref()
-    process.nextTick(resolve.bund(null, pmset.pid))
+    process.nextTick(resolve.bind(null, pmset.pid))
   })
 }
