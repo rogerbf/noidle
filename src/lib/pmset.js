@@ -7,8 +7,8 @@ module.exports = spawn => {
         detached: true,
         stdio: `ignore`
       }
-    )
+    ).on(`error`, reject)
     pmset.unref()
-    resolve(pmset.pid)
+    process.nextTick(resolve.bund(null, pmset.pid))
   })
 }

@@ -5,10 +5,7 @@ module.exports = ({ pmset, watch }, pid) => {
     : Promise.reject()
   )
   .then(
-    pid => pmset().then(pmset => {
-      watch(pmset, pid)
-      return pmset
-    }),
+    pid => pmset().then(pmset => watch(pmset, pid).then(() => pmset)),
     () => pmset()
   )
 }
