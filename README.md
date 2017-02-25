@@ -1,6 +1,6 @@
 # noidle
 
-Spawns an instance of `pmset noidle` which prevents a system running macOS from going to sleep.
+Prevent a system running macOS from going to sleep indefinitely, on behalf of a utility or for a specified amount of time. Uses `pmset noidle`.
 
 ## usage
 
@@ -10,19 +10,24 @@ const noidle = require('noidle')
 noidle()
 .then(pmsetPID => console.log(pmsetPID))
 .catch(console.log)
-// stay awake indefinitely
+// prevent sleep indefinitely
 
-noidle(435)
+noidle({ pid: 435 })
 .then(pmsetPID => console.log(pmsetPID))
 .catch(console.log)
-// stay awake for as long as pid 435 exists
+// prevent sleep for as long as pid 435 exists
+
+noidle({ timeout: 10 })
+.then(pmsetPID => console.log(pmsetPID))
+.catch(console.log)
+// prevent sleep for 10 seconds
 ```
 
 ## api
 
-### `noidle([pid])`
+### `noidle([options])`
 
-Returns a `Promise` which resolves with the `pid` of the underlying `pmset` instance. When called with a `pid`, a detached node instance will track the existance of that pid. If the corresponding process no longer exists - `pmset` and the tracking node instance terminates.
+Returns a `Promise` which resolves with the `pid` of the underlying `pmset` instance.
 
 ## other
 

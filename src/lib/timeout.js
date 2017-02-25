@@ -1,10 +1,10 @@
-module.exports = (fork, pmset, subject) => {
+module.exports = (fork, pmset, timeout) => {
   return new Promise((resolve, reject) => {
     const node = fork(
-      `${__dirname}/external-watch.js`,
+      `${__dirname}/external-timeout.js`,
       [
         pmset,
-        subject
+        timeout / 1000
       ],
       {
         detached: true,

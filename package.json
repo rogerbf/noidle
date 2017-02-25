@@ -1,7 +1,7 @@
 {
   "name": "noidle",
-  "version": "1.0.2",
-  "description": "prevents a macOS computer from going to sleep",
+  "version": "2.0.0",
+  "description": "prevent a system from going to sleep",
   "main": "./dist/index.js",
   "scripts": {
     "test": "echo 'no tests'",
@@ -16,7 +16,8 @@
     "pmset",
     "noidle",
     "sleep",
-    "caffeinate"
+    "caffeinate",
+    "timeout"
   ],
   "author": "rogerbf <roger@bergfalk.nu> (http://bergfalk.nu/)",
   "license": "MIT",
@@ -44,9 +45,7 @@
       "es2015"
     ]
   },
-  "dependencies": {
-    "watch-pid": "^1.0.0"
-  },
+  "dependencies": {},
   "repository": {
     "type": "git",
     "url": "git+https://github.com/rogerbf/noidle.git"
