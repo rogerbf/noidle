@@ -1,6 +1,6 @@
 {
   "name": "noidle",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "prevent a system from going to sleep",
   "main": "./dist/index.js",
   "scripts": {
