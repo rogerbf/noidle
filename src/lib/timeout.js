@@ -4,7 +4,7 @@ module.exports = (fork, pmset, timeout) => {
       `${__dirname}/external-timeout.js`,
       [
         pmset,
-        timeout / 1000
+        timeout * 1000
       ],
       {
         detached: true,
